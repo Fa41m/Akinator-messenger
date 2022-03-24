@@ -1,7 +1,7 @@
 import java.util.*;
 // https://www.youtube.com/watch?v=_ca1Zfg6CrQ
 
-public class Akinator{
+public class game{
     public static void main(String[] args){
         // Character Creation - HashMap is a way to store it as a database
         HashMap c1 = new HashMap();
@@ -67,72 +67,39 @@ public class Akinator{
 
         Scanner sc = new Scanner(System.in);
 
-        boolean answer;
-
         System.out.println("Is your character Human?");
-        String answer1 = sc.nextLine();
-        if(answer1 == "y" || answer1 == "yes" || answer1 == "Yes" || answer1 == "YES"){
-            answer = true;
-        }
-        else{
-            answer = false;
-        }
 
-        take_Input(answer, "human", database);
+        take_Input(sc.nextInt(), "human", database);
 
         System.out.println("Is your character a Youtuber?");
-        String answer2 = sc.nextLine();
-        if(answer2 == "y" || answer2 == "yes" || answer2 == "Yes" || answer2 == "YES"){
-            answer = true;
-        }
-        else{
-            answer = false;
-        }
-
-        take_Input(answer, "youtube", database);
+        take_Input(sc.nextInt(), "youtube", database);
 
         System.out.println("Is your character in a Movie?");
-        String answer3 = sc.nextLine();
-        if(answer3 == "y" || answer3 == "yes" || answer3 == "Yes" || answer3 == "YES"){
-            answer = true;
-        }
-        else{
-            answer = false;
-        }
-
-        take_Input(answer, "movie", database);
+        take_Input(sc.nextInt(), "movie", database);
 
         System.out.println("Is your character in a Book?");
-        String answer4 = sc.nextLine();
-        if(answer4 == "y" || answer4 == "yes" || answer4 == "Yes" || answer4 == "YES"){
-            answer = true;
-        }
-        else{
-            answer = false;
-        }
-
-        take_Input(answer, "book", database);
+        take_Input(sc.nextInt(), "book", database);
 
         System.out.println("Is your character Female??");
-        String answer5 = sc.nextLine();
-        if(answer5 == "y" || answer5 == "yes" || answer5 == "Yes" || answer5 == "YES"){
-            answer = true;
-        }
-        else{
-            answer = false;
-        }
-
-        take_Input(answer, "female", database);
+        take_Input(sc.nextInt(),"female", database);
     }
 
-    public static void take_Input(boolean answer, String property, ArrayList database){
+    public static void take_Input(int answer, String property, ArrayList database){
         // Checks if it matches the property, if not then it ignores it
+        boolean ans;
+        if(answer == 1){
+            ans = true;
+        }
+        else{
+            ans=false;
+        }
+
         ArrayList remove = new ArrayList();
         // Checks the database
         for(Object value : database){
             HashMap characters = (HashMap) value;
             boolean prop = (boolean) characters.get(property);
-            if(prop != answer){
+            if(prop != ans){
                 remove.add(characters);
             }
         }
