@@ -55,6 +55,14 @@ public class game{
         c6.put("book", false);
         c6.put("female", true);
 
+        HashMap c7 = new HashMap();
+        c7.put("name", "Lionel Messi");
+        c7.put("human", true);
+        c7.put("youtube", false);
+        c7.put("movie", false);
+        c7.put("book", true);
+        c7.put("female", false);
+
         // Creating the database
         ArrayList database = new ArrayList();
         // Adds it to the database
@@ -64,6 +72,7 @@ public class game{
         database.add(c4);
         database.add(c5);
         database.add(c6);
+        database.add(c7);
 
         // Creates the Questions and reads the Answers
         Scanner sc = new Scanner(System.in);
@@ -137,20 +146,26 @@ public class game{
             }
             // If there are several people with the same format, then it outputs all of them
             else{
+                System.out.println(database.size());
+                int count = 1;
                 for(int i=0; i<database.size(); i++){
-                    if(database.size()==i){
+                    // Output for the final person
+                    if(count==database.size()){
                         HashMap characters = (HashMap) database.get(i);
                         String output = (String) characters.get("name").toString();
                         System.out.println("Else your thinking of "+ output+".");
-                        System.out.println("Looks like you beat me this time :( I will try better next time.");
+                        System.out.println("Looks like you beat me this time :(");
+                        System.out.println("I will beat you next time.");
                         System.exit(0);
                     }
+                    // Lists everyone else that is not the last person
                     else{
                         HashMap characters = (HashMap) database.get(i);
                         String output = (String) characters.get("name").toString();
                         System.out.println("Your thinking of "+ output+" or");
-                        System.exit(0);
+                        // System.exit(0);
                     }
+                    count++;
             }
             }
         }
