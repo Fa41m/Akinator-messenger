@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const twilio = require('twilio');
 const mongoose = require('mongoose');
-// const mongoose = require('mongodb');
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -15,10 +14,6 @@ const dbUrl = process.env.DATABASE_URI;
 const client = new twilio(accountSid, authToken);
 
 app.use(bodyParser.urlencoded({extended: false}))
-
-// mongoose.connect('mongodb+srv://Fahim:Fahim1234@akinny.4vuvq.mongodb.net/names?retryWrites=true&w=majority', {useMongoClient:true}).then(() => {
-//     console.log('mongodb connected');
-// });
 
 // https://www.youtube.com/watch?v=-PdjUx9JZ2E
 const connectDb = async () => {
