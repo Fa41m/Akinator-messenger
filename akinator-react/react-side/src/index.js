@@ -22,7 +22,7 @@ class Question extends React.Component {
       question: questiondatabase[count].question
     }
     
-  }
+  } 
   render(){
     if (count <= 4){
       this.state.question = questiondatabase[count].question
@@ -80,30 +80,29 @@ class Game extends React.Component {
     console.log(answers)
     this.setState({
       answers: answers,
-      count: count ++
+      count: count ++,
     })
-    if (count>=4){
+    if (count>=5){
       for(let i=0;i<listdata.length;i++){
         if (found == -1){
           var check = 0
           for(let j=0;j<5;j++){
+            console.log(listdata[i][j],answers[j])
             if (listdata[i][j] == answers[j]){
               check ++
             }
             if (check == 5){
-              var found = i
+              found = i
             }
           }
         }
       }
     }
     if (check >= 5){
-      fetch('/answer',
-      {
+      console.log(JSON.stringify(database[found]))
+      fetch('/answer', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(database[found])
       })
       return
