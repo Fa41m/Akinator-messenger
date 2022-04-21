@@ -98,7 +98,14 @@ class Game extends React.Component {
       }
     }
     if (check >= 5){
-      console.log(database[found])
+      fetch('/answer',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(database[found])
+      })
       return
     }
     if (count > 4 && found == -1){
