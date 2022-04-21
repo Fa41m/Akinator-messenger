@@ -13,7 +13,7 @@ var questiondatabase = [
   { "question": "Are they female?", "id":4},
 ]
 var listdata = database.map(data => [data.human,data.youtube,data.movie,data.book,data.female])
-var count = 0
+var count = -1
 var found = -1
 class Question extends React.Component {
   constructor(props){
@@ -111,11 +111,53 @@ class Game extends React.Component {
       console.log("ok")
     }
   }
+  handleSubmit = (event) =>{
+    event.preventDefault()
+    var number = event.target[0].value
+    if ((number.length === 11 && number.substr(0,1) === '0') || (number.length === 12 && number.substr(0,2) === '44') || (number.length === 13 && number.substr(0,3) === '+44')){
+      fetch('/number', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({usernumber : number})
+      })
+      count ++
+      this.setState(this.state) //rerenders
+    }
+    else{
+      return
+    }
+  }
     render(){
       if (count > 4 && found == -1){
         return(
           <div className="center" id="game">
             <DatabaseEdit answers = {this.state.answers} />
+          </div>
+        )
+      }
+      if (count > 4 && found != -1){
+        return(
+          <div>
+            <div className='center'>
+              <Question count = {this.state.count}/>
+            </div>
+            <div className='center'>
+              <h1>{database[found].name}</h1>
+            </div>
+          </div>
+        )
+      }
+      if (count === -1){
+        return(
+          <div>
+            <div className='center'>
+              <h1>Enter your number(UK)</h1>
+            </div>
+            <div className='center'>
+              <form onSubmit={this.handleSubmit}>
+                <input type='text'></input>
+              </form>
+            </div>
           </div>
         )
       }

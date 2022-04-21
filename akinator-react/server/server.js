@@ -7,4 +7,8 @@ app.post('/answer', function (req, resp){
     const answer = req.body
     resp.json("twilio here")
 })
+app.post('/number', function(req, resp){
+    const number = req.body
+    console.log(number)
+})
 app.listen(5000)
