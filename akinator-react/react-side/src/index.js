@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom'
 import './index.css'
 var database = [
     { "name":"Ironman", "human":true, "youtube":false, "movie":true, "book":true, "female":false},
-    { "name":"Homer Simpson", "human":false, "youtube":false, "movie":true, "book":false, "female":false}
+    { "name":"Homer Simpson", "human":false, "youtube":false, "movie":true, "book":false, "female":false},
+    { "name":"Zeus", "human":false, "youtube":false, "movie":true, "book":true, "female":false},
+    { "name":"Steven Hawking", "human":true, "youtube":false, "movie":false, "book":true, "female":false},
+    { "name":"Aphrodite", "human":false, "youtube":false, "movie":true, "book":true, "female":true},
+    { "name":"Maddison Beer", "human":true, "youtube":false, "movie":false, "book":false, "female":true},
+    { "name":"Lionel Messi", "human":true, "youtube":false, "movie":false, "book":true, "female":false}
 ]
 var questiondatabase = [
   { "question":"Are they human?", "id":0},
