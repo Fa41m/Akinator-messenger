@@ -72,6 +72,8 @@ class DatabaseEdit extends React.Component {
     )
   }
 }
+
+
 class Game extends React.Component {
   constructor(props){
     super(props)
@@ -132,11 +134,26 @@ class Game extends React.Component {
       return
     }
   }
+  playAgain(answer){
+    if (answer == true){
+      count = -1
+    }
+    else{
+      count = -2
+    }
+    this.setState(this.state)
+  }
     render(){
       if (count > 4 && found == -1){
         return(
-          <div className="center" id="game">
+          <div>
+            <div className='center' id="game">
             <DatabaseEdit answers = {this.state.answers} />
+            </div>
+            <div className='center'>
+              <button className='button' onClick={() => this.playAgain(true)}>Play again</button>
+              <button className='button' onClick={() => this.playAgain(false)}>Quit</button>
+            </div>
           </div>
         )
       }
@@ -148,6 +165,10 @@ class Game extends React.Component {
             </div>
             <div className='center'>
               <h1>{database[found].name}</h1>
+            </div>
+            <div className="center">
+              <button className='button' onClick={() => this.playAgain(true)}>Play again</button>
+              <button className='button' onClick={() => this.playAgain(false)}>Quit</button>
             </div>
           </div>
         )
@@ -163,6 +184,13 @@ class Game extends React.Component {
                 <input type='text'></input>
               </form>
             </div>
+          </div>
+        )
+      }
+      if (count === -2){
+        return(
+          <div className='center'>
+            <h1>Thanks for playing!</h1>
           </div>
         )
       }
@@ -185,5 +213,5 @@ class Game extends React.Component {
 
 ReactDOM.render(
   <Game />,
-  document.getElementById('root') /* controls root container, essentially updates whole page */
+  document.getElementById('root') // controls root container, essentially updates whole page
 )
